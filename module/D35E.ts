@@ -48,11 +48,22 @@ export class D35E implements SystemApi {
 		// Only applies to the standard Character Sheet
 		if (sheet.constructor.name !== 'Character') return;
 
+		const activeTab = sheet._initialTab.primary === 'beavers-crafting';
+		sheet.activeTab = undefined;
+
+		// Removes activeTabs
+		if (activeTab) {
+			html.find('nav[data-group=primary] .active[data-tab]').toggleClass('active');
+			html.find('.active[data-group=primary][data-tab]').toggleClass('active');
+		}
+
 		const tabs = $(html).find('.tabs[data-group="primary"]');
-		const tabItem = $('<a class="item" data-tab="' + tabData.id + '">' + tabData.label + '</a>');
+		const tabItem = $(`<a class="item ${activeTab ? 'active' : ''}" data-tab="${tabData.id}">${tabData.label}</a>`);
 		tabs.append(tabItem);
 		const body = $(html).find('.primary-body');
-		const tabContent = $('<div class="tab" data-group="primary" data-tab="' + tabData.id + '"></div>');
+		const tabContent = $(
+			`<div class="tab ${activeTab ? 'active' : ''}" data-group="primary" data-tab="${tabData.id}"></div>`
+		);
 		body.append(tabContent);
 		tabContent.append(tabBody);
 
