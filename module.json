@@ -11,7 +11,7 @@
 	],
 	"languages": [],
 	"esmodules": ["main.js"],
-	"styles": [],
+	"styles": ["style.css"],
 	"packs": [],
 	"url": "https://github.com/elizeuangelo/foundryvtt-module-bsa-D35E",
 	"manifest": "https://github.com/elizeuangelo/foundryvtt-module-bsa-D35E/releases/latest/download/module.json",
